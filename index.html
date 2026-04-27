@@ -2,38 +2,202 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Curso de Marketing Digital</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>VETRIX ANDROID</title>
+
 <style>
-body{margin:0;font-family:Poppins;background:#0f0f1a;color:#fff}
-header{padding:80px 20px;text-align:center;background:linear-gradient(135deg,#6a11cb,#2575fc)}
-section{max-width:900px;margin:auto;padding:50px 20px}
-.cta{background:#fff;color:#2575fc;padding:15px 35px;border-radius:30px;text-decoration:none;font-weight:700}
-.box{background:#1a1a2e;padding:30px;border-radius:16px;margin-top:30px}
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(180deg, #0a0000, #000);
+  color: white;
+}
+
+/* LOGIN */
+#login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 90%;
+  max-width: 320px;
+  background: #0f0f0f;
+  border-radius: 14px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(255,0,0,0.4);
+}
+
+.card h2 {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1a1a1a;
+  color: white;
+  margin-top: 10px;
+}
+
+.card button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: red;
+  color: white;
+  font-weight: bold;
+}
+
+/* PAINEL */
+#panel {
+  display: none;
+  padding: 20px;
+}
+
+.box {
+  max-width: 380px;
+  margin: auto;
+  background: #0f0f0f;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 0 20px rgba(255,0,0,0.3);
+}
+
+.box h3 {
+  color: red;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: linear-gradient(red, #700000);
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.slider {
+  width: 100%;
+}
+
+.label {
+  color: red;
+  font-weight: bold;
+}
 </style>
 </head>
+
 <body>
 
-<header>
-<h1>Curso Completo de Marketing Digital</h1>
-<p>Aprenda como pessoas constroem renda online com estratégia e consistência.</p>
-<a class="cta" href="login.html">Acessar Aulas</a>
-</header>
-
-<section>
-<div class="box">
-<h2>📚 O que você vai aprender</h2>
-<ul>
-<li>Fundamentos do marketing digital</li>
-<li>Criação de conteúdo</li>
-<li>Vendas online</li>
-<li>Tráfego orgânico e pago</li>
-<li>Casos reais de profissionais</li>
-</ul>
+<!-- LOGIN -->
+<div id="login">
+  <div class="card">
+    <h2>VETRIX</h2>
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="entrar()">Entrar</button>
+  </div>
 </div>
-</section>
+
+<!-- PAINEL -->
+<div id="panel">
+  <div class="box">
+    <h3>VETRIX ANDROID PANEL</h3>
+
+    <p id="device"></p>
+
+    <button class="btn" onclick="basic()">Otimização Básica</button>
+    <button class="btn" onclick="pro()">Otimização Avançada</button>
+
+    <div>
+      <p class="label">FPS</p>
+      <input type="range" min="30" max="120" value="60" class="slider" id="fps" oninput="fpsUpdate()">
+      <p id="fpsTxt">FPS: 60</p>
+    </div>
+
+    <div>
+      <p class="label">Delay</p>
+      <input type="range" min="0" max="100" value="0" class="slider" id="delay" oninput="delayUpdate()">
+      <p id="delayTxt">Delay: 0%</p>
+    </div>
+
+    <button class="btn" onclick="apply()">Aplicar</button>
+
+    <button class="btn" onclick="abrirFF()">ABRIR FREE FIRE</button>
+  </div>
+</div>
+
+<script>
+function entrar() {
+  let senha = document.getElementById("senha").value;
+
+  if (senha === "VETRIX00") {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("panel").style.display = "block";
+
+    document.getElementById("device").innerText = navigator.userAgent;
+  } else {
+    alert("Senha errada");
+  }
+}
+
+function fpsUpdate() {
+  document.getElementById("fpsTxt").innerText =
+    "FPS: " + document.getElementById("fps").value;
+}
+
+function delayUpdate() {
+  document.getElementById("delayTxt").innerText =
+    "Delay: " + document.getElementById("delay").value + "%";
+}
+
+function basic() {
+  let btn = event.target;
+  btn.innerText = "Aplicando...";
+  setTimeout(() => btn.innerText = "Básico ✓", 1500);
+}
+
+function pro() {
+  let btn = event.target;
+  btn.innerText = "Otimizando...";
+  setTimeout(() => btn.innerText = "Avançado ✓", 2000);
+}
+
+function apply() {
+  let btn = event.target;
+  btn.innerText = "Aplicando...";
+  setTimeout(() => btn.innerText = "Aplicado ✓", 1500);
+}
+
+function abrirFF() {
+  let btn = event.target;
+  btn.innerText = "Abrindo...";
+  btn.disabled = true;
+
+  let ua = navigator.userAgent.toLowerCase();
+
+  if (ua.includes("android")) {
+    window.location.href =
+      "intent://#Intent;scheme=freefire;package=com.dts.freefireth;end";
+  } else {
+    window.location.href = "freefire://";
+  }
+
+  setTimeout(() => {
+    btn.innerText = "ABRIR FREE FIRE";
+    btn.disabled = false;
+  }, 3000);
+}
+</script>
 
 </body>
 </html>
-
